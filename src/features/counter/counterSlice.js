@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchCount } from './counterAPI';
+// import { fetchCount } from './counterAPI';
+// import { clientTokens } from '../../static/client/client_tokens';
+import { getManyChatToken } from '../../utils/getManyChatToken';
 
 const initialState = {
   value: 0,
@@ -11,12 +13,13 @@ const initialState = {
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
-export const fetchUserData = createAsyncThunk('counter/fetchCount', async (userId, mcToken) => {
+export const fetchUserData = createAsyncThunk('counter/fetchCount', async (company, userId) => {
+  const mcToken = await getManyChatToken(company);
+  console.log('mcToken:', mcToken);
   const mcUrl = `https://a3wusrk07h.execute-api.us-east-1.amazonaws.com/default/manychat_tools`;
-  console.log('FUCK');
   const config = {
     method: 'POST',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ user_id: userId, mc_token: mcToken }),
   };
