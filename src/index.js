@@ -17,7 +17,7 @@ root.render(
       <Router>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/:company/:userId" element={<App />} />
+          <Route path="/:company/:user_id" element={<App />} />
         </Routes>
       </Router>
     </Provider>

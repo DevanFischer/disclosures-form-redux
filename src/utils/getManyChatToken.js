@@ -1,10 +1,6 @@
-import { clientTokens } from '../static/client/client_tokens';
+import clientTokens from '../static/client/client_tokens.json';
 
 export const getManyChatToken = async (companyAbbr) => {
-  console.log(clientTokens);
-  console.log(`companyAbbr: ${companyAbbr} clientTokens: ${clientTokens}`);
-  const token = clientTokens[companyAbbr].mc_token;
-  console.log(`token: ${token}`);
-  console.log('oken');
-  return token;
+  // Look for the company in the clientTokens object and return the mc_token if found or null if not found.
+  return clientTokens[companyAbbr] ? clientTokens[companyAbbr].mc_token : null;
 };

@@ -15,7 +15,8 @@ const initialState = {
 // typically used to make async requests.
 export const fetchUserData = createAsyncThunk('counter/fetchCount', async (company, userId) => {
   const mcToken = await getManyChatToken(company);
-  console.log('mcToken:', mcToken);
+  console.log('userId:', userId);
+  console.log('company:', company);
   const mcUrl = `https://a3wusrk07h.execute-api.us-east-1.amazonaws.com/default/manychat_tools`;
   const config = {
     method: 'POST',
@@ -23,6 +24,8 @@ export const fetchUserData = createAsyncThunk('counter/fetchCount', async (compa
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ user_id: userId, mc_token: mcToken }),
   };
+
+  console.log('config:', config);
   const response = await fetch(mcUrl, config)
     .then((response) => response.json())
     .then((data) => {

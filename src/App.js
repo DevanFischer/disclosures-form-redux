@@ -7,13 +7,13 @@ import { fetchUserData } from './features/counter/counterSlice';
 import './App.css';
 
 function App() {
-  const { company, userId } = useParams();
+  const { company, user_id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchUserData(company, userId));
-  }, [company, userId, dispatch]);
+    console.log(`company: ${company} user_id: ${user_id}`);
+    dispatch(fetchUserData(company, user_id));
+  }, [dispatch, company, user_id]);
 
-  console.log(`company: ${company} userId: ${userId}`);
   return <div className="App"></div>;
 }
 
